@@ -21,6 +21,12 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- aeson           # for parsing jsons
+- text            # for representing unicode text
+- servant         # for interacting with github api 
+- servant-client 
+- http-client     # for carrying out http requests and getting responses
+- http-client-tls
 
 library:
   source-dirs: src

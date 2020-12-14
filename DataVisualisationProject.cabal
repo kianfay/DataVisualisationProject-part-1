@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: afb71884c791ca3b81fe757cb309e13270907570262928fef1e4af0f6009a836
+-- hash: cf06db9b11ad408998478f7d7ee41c9a2e4a37a291cb2a333500eea92fe642c3
 
 name:           DataVisualisationProject
 version:        0.1.0.0
@@ -27,13 +27,20 @@ source-repository head
 
 library
   exposed-modules:
+      GithubRepresent
       Lib
   other-modules:
       Paths_DataVisualisationProject
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , http-client
+    , http-client-tls
+    , servant
+    , servant-client
+    , text
   default-language: Haskell2010
 
 executable DataVisualisationProject-exe
@@ -45,7 +52,13 @@ executable DataVisualisationProject-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       DataVisualisationProject
+    , aeson
     , base >=4.7 && <5
+    , http-client
+    , http-client-tls
+    , servant
+    , servant-client
+    , text
   default-language: Haskell2010
 
 test-suite DataVisualisationProject-test
@@ -58,5 +71,11 @@ test-suite DataVisualisationProject-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       DataVisualisationProject
+    , aeson
     , base >=4.7 && <5
+    , http-client
+    , http-client-tls
+    , servant
+    , servant-client
+    , text
   default-language: Haskell2010
