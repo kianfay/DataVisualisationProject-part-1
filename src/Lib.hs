@@ -1,5 +1,7 @@
--- We need the OverloadedStrings extension so that "kianfay" below is read as a Text type instead of [Char]
-
+-- We need the OverloadedStrings extension so that "kianfay" below 
+-- is read as a Text type instead of [Char] (see what happens when
+-- we remove this extension). The lambdaCase allows
+-- us to use the case statement in the way shown below.
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings    #-}
 
@@ -13,9 +15,12 @@ import Network.HTTP.Client          (newManager)
 import Network.HTTP.Client.TLS      (tlsManagerSettings)
 import Data.Text ( Text )
 
+-- This is the function called by Main.hs
 someFunc :: IO ()
 someFunc = doGithubReq "kianfay"
 
+-- This function accepts a useranme of type Text, and performs
+-- the Servant functionality
 doGithubReq :: Text -> IO()
 doGithubReq username =  let env :: IO Servant.Client.ClientEnv
                             env = do
