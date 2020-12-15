@@ -24,7 +24,7 @@ doGithubReq =   let env :: IO Servant.Client.ClientEnv
                         return $ Servant.Client.mkClientEnv manager (Servant.Client.BaseUrl {baseUrlScheme = Servant.Client.Http, baseUrlHost = "api.github.com", baseUrlPort = 80, baseUrlPath = ""})
                 -- m >>= k suggests "feed the result of computation m to the function k" - from StackOverflow
                 -- We could also put case after in, and we would not write case with a \.
-                in (Servant.Client.runClientM (GithubRepresent.getUser "kianfay") =<< env) >>= \case
+                in (Servant.Client.runClientM (GithubRepresent.getUser (Just "Visualisation-App") "kianfay") =<< env) >>= \case
                     Left err -> do
                         -- The show function is passed an instance of the class Show (err or res in this case, being an 
                         -- instance of ClientError or Data.Text.Internal.Text) and returns a string representation
