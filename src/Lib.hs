@@ -21,11 +21,12 @@ someFunc :: IO ()
 someFunc = doGithubReq
 
 -- A separate function which gets the data from the API endpoints
-queries :: ClientM (Org, [Repo])
+queries :: ClientM (Org, [Repo], Language)
 queries = do
     org <-  getOrg (Just "Visualisation-App") "microsoft"
-    repo <- getRepos (Just "Visualisation-App") "microsoft" (Just 1)
-    return  (org, repo)
+    repo <- getRepos (Just "Visualisation-App") "microsoft" (Just 10)
+    lang <- getLangs (Just "Visualisation-App") "microsoft" "VSCode"
+    return  (org, repo, lang)
 
 -- This function now essentially runs the Queries function and prints the output 
 doGithubReq :: IO()
@@ -41,5 +42,6 @@ doGithubReq =   let env :: IO Servant.Client.ClientEnv
                                 -- The show function is passed an instance of the class Show (err or res in this case, being an 
                                 -- instance of ClientError or Data.Text.Internal.Text) and returns a string representation
                                 putStrLn ("We have an ERROR -- " ++ show err)
-                            Right (org, repo) -> do
+                            Right (org, repo, lang) -> do
                                 putStrLn $ show org ++ show repo
+                                putStrLn $ show lang
